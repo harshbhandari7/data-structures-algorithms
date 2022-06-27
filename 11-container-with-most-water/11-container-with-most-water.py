@@ -4,7 +4,7 @@ class Solution:
         start, end = 0, leng - 1
         max_water = 0
         for i in range(leng-1, 0,-1):
-            if (height[start] > height[end]):
+            if height[start] > height[end]:
                 max_water = max(max_water, i * height[end])
                 end -= 1
             else:
