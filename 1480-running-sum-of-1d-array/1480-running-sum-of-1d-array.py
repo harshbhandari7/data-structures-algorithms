@@ -4,6 +4,6 @@ class Solution:
         nums_sum = [nums[0]]
         
         for i in range(1, leng):
-            nums_sum.append(nums_sum[-1] + nums[i])
+            nums_sum.append(nums_sum[i-1] + nums[i])
             
         return nums_sum
