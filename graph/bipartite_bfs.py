@@ -24,6 +24,7 @@ class BipartiteGraph:
 			for neighbour in self.graph[vertex]:
 				if self.colors[neighbour] == -1:
 					self.colors[neighbour] = 1 - self.colors[vertex]
+					queue.append(neighbour)
 				elif self.colors[node] == self.colors[neighbour]:
 					return False
 
