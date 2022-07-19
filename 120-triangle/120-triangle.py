@@ -1,19 +1,21 @@
 class Solution:
+    def get_sum(self, i, j, grid, memo, mini):
+      if i == len(grid) - 1:
+        return grid[i][j]
+      
+      if (i, j) in memo:
+        return memo[(i, j)]
+      
+      bottom = self.get_sum(i+1, j, grid, memo, mini)
+      right = self.get_sum(i+1, j+1, grid, memo, mini)
+      
+      curr = grid[i][j] + min(bottom, right)
+      print('curr-', curr)
+      mini += curr
+      memo[(i, j)] = mini
+      return mini
+      
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        leng = len(triangle)
-        if leng == 1:
-            return triangle[0][0]
-        
-        res = [[0 for i in range(leng)] for row in triangle]
-        res[0][0] = triangle[0][0]
-        
-        for i in range(1, leng):
-            for j in range(len(triangle[i])):
-                if j == 0:
-                    res[i][j] = res[i-1][j] + triangle[i][j]
-                elif j == len(triangle[i])-1:
-                    res[i][j] = res[i-1][j-1] + triangle[i][j]
-                else:
-                    res[i][j] = min(res[i-1][j-1], res[i-1][j]) + triangle[i][j]
-        
-        return min(res[-1])
+        memo = {}
+        print('sytart')
+        return self.get_sum(0, 0, triangle, memo, 0)
