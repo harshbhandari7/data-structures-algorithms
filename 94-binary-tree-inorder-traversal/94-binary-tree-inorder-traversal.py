@@ -14,6 +14,9 @@ class Solution:
       self.get_traversal(node.right, res)
       
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+      if root is None:
+        return []
+      
       res = []
       self.get_traversal(root, res)
       return res
