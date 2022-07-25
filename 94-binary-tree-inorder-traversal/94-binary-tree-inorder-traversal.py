@@ -17,6 +17,25 @@ class Solution:
       if root is None:
         return []
       
-      res = []
-      self.get_traversal(root, res)
-      return res
+      # recursive method
+      
+      # res = []
+      # self.get_traversal(root, res)
+      # return res
+      
+      # iterative
+      in_order = []
+      stack = []
+      curr = root
+      while True:
+        if curr:
+          stack.append(curr)
+          curr = curr.left
+        else:
+          if len(stack) == 0:
+            break
+          curr = stack.pop()
+          in_order.append(curr.val)
+          curr = curr.right
+          
+      return in_order
