@@ -17,8 +17,27 @@ class Solution:
       if root is None:
         return []
       
-      postorder = []
-      self.get_traversal(root, postorder)
+      # recursive 
       
-      return postorder
+      # postorder = []
+      # self.get_traversal(root, postorder)
+      
+      # return postorder
+      
+      # iterative
+      
+      postorder = []
+      stack = [root]
+      
+      while stack:
+        top = stack.pop()
+        if top:
+          postorder.append(top.val)
+          stack.append(top.left)
+          stack.append(top.right)
+      
+      return postorder[::-1]
+    
+      
+        
         
