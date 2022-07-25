@@ -17,8 +17,36 @@ class Solution:
       if root is None:
         return []
       
+      # recursive approach
+      
+      # preorder = []
+      # self.get_traversal(root, preorder)
+      # return preorder
+      
+      
+      # iterative approach
+      
       preorder = []
-      self.get_traversal(root, preorder)
-      return preorder
-        
+      curr = root
+      stack = []
+      
+      while True:
+        if curr is not None:
+          stack.append(curr)
+          preorder.append(curr.val)
+          curr = curr.left
+        else:
+          if len(stack) == 0:
+            break
+          
+          curr = stack.pop()
+          curr = curr.right
+      
+      return preorder 
+          
+          
+          
+          
+      
+      
         
