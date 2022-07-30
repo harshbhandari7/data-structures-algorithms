@@ -5,22 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def get_depth(self, node):
+    def get_height(self, node):
       if node is None:
         return 0
       
-      left = self.get_depth(node.left)
-      right = self.get_depth(node.right)
+      left = self.get_height(node.left)
+      right = self.get_height(node.right)
+      
+      if left == -1 or right == -1 or abs(left-right) > 1:
+        return -1
       
       return 1 + max(left, right)
-      
       
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
       if root is None:
         return True
       
+      height = self.get_height(root)
       
-      left = self.get_depth(root.left)
-      right = self.get_depth(root.right)
-      
-      return (abs(left-right) < 2) and self.isBalanced(root.left) and self.isBalanced(root.right)
+      return height != -1 
