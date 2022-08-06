@@ -1,11 +1,13 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        leng = len(digits)
-        number = 0
-        for i, digit in enumerate(digits):
-            number += digit * (10 ** ((leng-1) - i))
-
-        number += 1
-        res = list(str(number))
-        res = list(map(lambda x: int(x), res))
+        s = ''
+        for d in digits:
+          s += str(d)
+        n = int(s)
+        n += 1
+        s = str(n)
+        res = []
+        for ch in s:
+          res.append(int(ch))
+        
         return res
