@@ -4,10 +4,11 @@ class Solution:
         end = len(numbers) - 1
         
         while start < end:
-            n_sum = numbers[start] + numbers[end]
-            if (n_sum == target):
-                return [start+1, end+1]
-            elif(target < n_sum):
-                end -= 1
-            else:
-                start += 1
+          summ = numbers[start] + numbers[end]
+          if summ == target:
+            return [start + 1, end + 1]
+          elif summ > target:
+            end -= 1
+          else:
+            start += 1
+    
