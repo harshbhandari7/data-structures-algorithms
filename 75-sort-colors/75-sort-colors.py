@@ -4,16 +4,22 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         leng = len(nums)
-        zero = one = 0
-        for n in nums:
-          if n == 0:
-            zero += 1
-          if n == 1:
-            one += 1
+        c0 = 0
+        c2 = leng - 1
+        ind = ctr = 0
         
-        two = leng - one - zero
-        
-        nums[: zero] = [0] * zero
-        nums[zero: zero + one] = [1] * one
-        nums[zero + one:] = [2] * two
+        while ctr < leng:
+          if nums[ind] == 0:
+            nums[ind], nums[c0] = nums[c0], nums[ind]
+            ind += 1
+            c0 += 1
+            
+          elif nums[ind] == 1:
+            ind += 1
+          
+          else:
+            nums[ind], nums[c2] = nums[c2], nums[ind]
+            c2 -= 1
+            
+          ctr += 1
         
