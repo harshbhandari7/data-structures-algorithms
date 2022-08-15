@@ -1,27 +1,29 @@
 class Solution:
+    def get_binary(self, bin):
+      leng = len(bin)
+      deci = 0
+      power = leng - 1
+      for i in range(leng):
+        deci += int(bin[i]) * (2 ** power)
+        power -= 1
+        
+      return deci
+    
+    def get_decimal(self, deci):
+      bin = ""
+      while deci > 1:
+        bin += str(deci % 2)
+        deci = deci // 2
+      
+      bin += str(deci)
+      
+      return bin[::-1]
+        
     def addBinary(self, a: str, b: str) -> str:
-        a_num = 0
-        b_num = 0
-        a_pos = len(a) - 1
-        for bit in a:
-            a_num += int(bit) * (2 ** a_pos)
-            a_pos -= 1
+        a_deci = self.get_binary(a)
+        b_deci = self.get_binary(b)
         
-        b_pos = len(b) - 1
-        for bit in b:
-            b_num += int(bit) * (2 ** b_pos)
-            b_pos -= 1
+        summ = a_deci + b_deci
+        summ_bin = self.get_decimal(summ)
         
-        num_sum = a_num + b_num
-        
-        if (num_sum == 0):
-            return '0'
-        
-        binary_sum = ''
-        
-        while (num_sum > 0):
-            rem = num_sum % 2
-            binary_sum += str(rem)
-            num_sum = num_sum // 2
-        
-        return binary_sum[::-1]
+        return summ_bin
