@@ -1,23 +1,21 @@
 class Solution:
     def __init__(self):
-        self.res = []
+      self.res = []
+    
+    def get_combi(self, i, nums, target, seq):
+      if i == len(nums):
+        if target == 0:
+          temp = seq.copy()
+          self.res.append(temp)
+        return
+      
+      if target > 0:
+        seq.append(nums[i])
+        self.get_combi(i, nums, target-nums[i], seq)
+        seq.remove(nums[i])
         
-    def get_combo_sum(self, ind, seq, target, arr):
-        if ind == len(arr):
-            if target == 0:
-                temp = seq.copy()
-                self.res.append(temp)
-            return
-
-        # case where we have picked the element
-        if arr[ind] <= target:
-            seq.append(arr[ind])
-            self.get_combo_sum(ind, seq, target-arr[ind], arr)
-            seq.remove(arr[ind])
-
-        # case where we have not picked the element
-        self.get_combo_sum(ind+1, seq, target, arr)
+      self.get_combi(i+1, nums, target, seq)
     
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        self.get_combo_sum(0, [], target, candidates)
-        return self.res
+      self.get_combi(0, candidates, target, [])
+      return self.res
