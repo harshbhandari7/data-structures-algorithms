@@ -1,11 +1,12 @@
 class Solution:
     def findSubarrays(self, nums: List[int]) -> bool:
         leng = len(nums)
+        s = set()
         for i in range(leng-1):
-          prev = nums[i] + nums[i+1]
-          for j in range(i+1, leng-1):
-            curr = nums[j] + nums[j+1]
-            if prev == curr:
-              return True
+          t = nums[i] + nums[i+1]
+          if t in s:
+            return True
+          
+          s.add(t)
         
         return False
