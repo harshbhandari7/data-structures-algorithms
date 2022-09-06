@@ -1,6 +1,10 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         leng = len(s)
+        
+        if leng % 2:
+          return False
+        
         stack = []
         stack.append(s[0])
         
