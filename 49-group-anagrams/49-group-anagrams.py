@@ -1,15 +1,22 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hash_map = {}
+        leng = len(strs)
+        if leng == 1:
+          return [[""]] if strs[0] == "" else [strs[0]]
+        
+        hash_set = {}
+        for s in strs:
+          key = ''.join(sorted(s))
+          if key in hash_set:
+            hash_set[key].append(s)
+          else:
+            hash_set[key] = [s]
+        
         res = []
-        for word in strs:
-            sorted_word = ''.join(sorted(word))
-            if sorted_word not in hash_map:
-                hash_map[sorted_word] = [word]
-            else:
-                hash_map[sorted_word].append(word)
-            
-        for key in hash_map:
-            res.append(hash_map[key])
-            
+        for key in hash_set:
+          res.append(hash_set[key])
+        
         return res
+          
+        
+            
