@@ -9,18 +9,18 @@ class Solution:
         if not head or not head.next:
           return None
         
-        slow = fast = temp = head
+        slow = fast = cycle_start = head
         
-        while fast and fast.next:
+        while fast.next and fast.next.next:
           slow = slow.next
           fast = fast.next.next
-        
-          if slow == fast:
-            while temp != slow:
-              temp = temp.next
-              slow = slow.next
-            
-            return temp
           
-        return None
+          if slow == fast:
+            while slow != cycle_start:
+              slow = slow.next
+              cycle_start = cycle_start.next
             
+            return cycle_start
+        
+        return None
+              
