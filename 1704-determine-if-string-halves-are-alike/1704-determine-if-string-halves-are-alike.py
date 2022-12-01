@@ -3,7 +3,7 @@ class Solution:
       leng = len(s)
       start, end = 0, leng-1
       ctr = 0
-      vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+      vowels = set('aeiouAEIOU')
 
       while start < end:
         if s[start] in vowels:
